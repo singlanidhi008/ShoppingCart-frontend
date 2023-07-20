@@ -1,0 +1,39 @@
+<p>delete-product works!</p>
+<form [formGroup]="DeleteProduct" (ngSubmit)="onSubmit(DeleteProduct.value)">
+  <div class="container-fluid">
+    <div class="input-group mb-12 delete-cls">
+      <span class="input-group-text">Product Name</span>
+      <input type="text" class="form-control" formControlName="Name" />
+    </div>
+    <div class="input-group mb-12">
+      <span class="input-group-text">Product Name</span>
+      <input type="text" class="form-control" formControlName="Name" />
+    </div>
+    <div class="input-group mb-12">
+      <span class="input-group-text">Product Price</span>
+      <input type="number" class="form-control" formControlName="Price" />
+    </div>
+    <div class="input-group mb-12">
+      <span class="input-group-text">Product Description</span>
+      <input type="text" class="form-control" formControlName="Description" />
+    </div>
+    <div class="input-group mb-12">
+      <span class="input-group-text">Category</span>
+      <input type="text" class="form-control" formControlName="Category" />
+    </div>
+    <div class="input-group mb-12">
+      <span class="input-group-text">Image</span>
+      <input type="text" class="form-control" formControlName="Image" />
+    </div>
+
+    <div>
+      <p-toast></p-toast>
+
+      <button type="submit" pButton pRipple label="Delete" class="p-button-success"></button>
+    </div>
+
+    <div>
+      <button class="btn btn-primary" (click)="Back()">Back</button>
+    </div>
+  </div>
+</form>

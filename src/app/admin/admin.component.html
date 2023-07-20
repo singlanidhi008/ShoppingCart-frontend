@@ -1,0 +1,79 @@
+
+ <div *ngIf="loadingData" class="spinner">
+  <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+</div>
+<div *ngIf="!loadingData">
+<div class="navbar">
+  <button type="button" class="btn3" matTooltip="Click Edit Button" (click)="LogOut()">
+    LogOut
+  </button>
+</div>
+<button type="button" class="btn1" *ngIf="role === 'Admin'" matTooltip="Click Edit Button" (click)="AddProduct()">
+  Add Product
+</button>
+<p-table 
+#myTab [value]="filteredProducts" 
+(sortFunction)="customSort($event)"
+  [responsive]="true" [globalFilterFields]="['name', 'price', 'description', 'category']"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [itemsPerPageOptions]="[5, 10, 15]"
+  [showCurrentPageReport]="true">
+  <ng-template pTemplate="caption">
+    <div style="text-align: right">
+      <i class="pi pi-search" style="margin: 6px 6px 0 0"> </i>
+      <input type="text" #input size="50" placeholder="search" (input)="Searching(input.value,pageSize)" style="width:auto; height: 25px;" />
+    </div>
+    <div>
+  </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th><a (click)="SortByName()">Product Name</a></th>
+      <th><a (click)="SortByPrice()">Price</a></th>
+      <th><a (click)="SortByDescription()">Description</a></th>
+      <th><a (click)="SortByCategory()">Category</a></th>
+      <th><a>Image</a></th>
+      <th><a>Actions</a></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-prd>
+    <tr>
+      <td>{{ prd.name }}</td>
+      <td>{{ prd.price }}</td>
+      <td>{{ prd.description }}</td>
+      <td>{{ prd.category }}</td>
+      <td>
+        <img [src]="prd.image" alt="Product Image" width="200" height="200" />
+      </td>
+      <td>
+        <button *ngIf="role === 'Admin'" class="btn btn-primary" style="margin-right: 2px;"   (click)="EditProduct(prd)">
+          Edit
+        </button>
+       
+<p-button *ngIf="role === 'Admin'" type="button" (click)="DeleteProduct(prd)" icon="pi pi-check" label="Delete"></p-button>
+
+        <button type="button" class="btn btn-danger" (click)="Details(prd)" data-toggle="modal">
+          Details
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+  
+  
+</p-table>
+<div class="pagination-Container">
+  <button type="button" class="btn btn-primary" (click)="prev()" [disabled]="pageNumber === 1"><<</button>
+  <span class="pageno">Page Number:{{ pageNumber }}</span>
+
+  <span>
+    <span></span>
+    <select [(ngModel)]="pageSize" (change)="onItemsPerPageChange()">
+      <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
+    </select>
+  </span>
+  <button type="button"  class="btn btn-primary" (click)="next()">>></button>
+</div>
+</div>
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+

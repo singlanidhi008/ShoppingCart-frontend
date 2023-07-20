@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <p-card header="Advanced Card" subheader="Card Subheader" [style]="{ width: '360px' }">
+    <ng-template pTemplate="header">
+      <h3>Product Details</h3>
+      <img [src]="ShownProduct.get('Image').value" alt="Product Image" class="img" />
+    </ng-template>
+    <p></p>
+    <div class="product-field">
+      <label>Product Name</label>
+      <span class="product-value">{{ ShownProduct.get("Name").value }}</span>
+    </div>
+    <div class="product-field">
+      <label>Product Price</label>
+      <span class="product-value">{{ ShownProduct.get("Price").value }}</span>
+    </div>
+    <div class="product-field">
+      <label> Description</label>
+      <span class="product-value">{{
+        ShownProduct.get("Description").value
+        }}</span>
+    </div>
+    <div class="product-field">
+      <label>Category</label>
+      <span class="product-value">{{
+        ShownProduct.get("Category").value
+        }}</span>
+    </div>
+
+    <ng-template pTemplate="footer">
+      <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" (click)="Back()"
+        [style]="{ 'margin-left': '.5em' }"></p-button>
+    </ng-template>
+  </p-card>
+</div>

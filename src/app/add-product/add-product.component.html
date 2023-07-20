@@ -1,0 +1,62 @@
+<div class="container d-flex align-items-center justify-content-center vh-100" style="margin-top: 100px;">
+  <div class="AddForm">
+    <form [formGroup]="AddProduct"  (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div class="container-fluid">
+        <h1 style="color: brown;">Add Product</h1>
+        <div class="form-group row">
+          <label for="name" class="col-sm-3 col-form-label">Product Name</label>
+          <div class="col-sm-9">
+            <input type="text" [class.is-invalid]="name.invalid && name.touched" class="form-control"
+              formControlName="Name" id="name">
+            <small class="text-danger" *ngIf="name.invalid && name.touched">Product Name is required</small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="price" class="col-sm-3 col-form-label">Product Price</label>
+          <div class="col-sm-9">
+            <input type="number" class="form-control" [class.is-invalid]="price.invalid && price.touched"
+              formControlName="Price" id="price">
+            <small class="text-danger" *ngIf="price.invalid && price.touched">Product price is required</small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="description" class="col-sm-3 col-form-label">Product Description</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" formControlName="Description"
+              [class.is-invalid]="description.invalid && description.touched" id="description">
+            <small class="text-danger" *ngIf="description.invalid && description.touched">Product description is
+              required</small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="category" class="col-sm-3 col-form-label">Category</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" formControlName="Category"
+              [class.is-invalid]="category.invalid && category.touched" id="category">
+            <small class="text-danger" *ngIf="category.invalid && category.touched">Product category is required</small>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="image" class="col-sm-3 col-form-label">Image</label>
+          <div class="col-sm-9">
+            <div class="imagePreview" *ngIf="imageUrl && imageUrl !== ''">
+              <img [src]="imageUrl" [alt]="">
+            </div>
+            <input type="file" class="form-control" (change) = "onImageChange($event)" formControlName="Image"
+              [class.is-invalid]="image.invalid && image.touched" id="image">
+             
+            <small class="text-danger" *ngIf="image.invalid && image.touched">Image is required</small>
+          </div>
+        </div>
+        <div class="form-actions row justify-content-center">
+          <div class="col-sm-2">
+            <button type="submit" pButton pRipple label="Add" class="p-button p-button-success btn-block" [disabled]="AddProduct.invalid"></button>
+          </div>
+          <div class="col-sm-2">
+            <button class="btn btn-primary btn-block" type="button" (click)="Back()">Back</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

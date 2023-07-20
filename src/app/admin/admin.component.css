@@ -1,0 +1,102 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  font-size: 20px;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.btn1 {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+.btn3 {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  float: right;
+  font-size: 14px;
+  cursor: pointer;
+}
+.product-image {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+}
+.navbar {
+  height: 20px;
+}
+::ng-deep .p-paginator .p-paginator-current {
+  background-color: transparent;
+  border: 0 none;
+  color: #6c757d;
+  min-width: 3rem;
+  height: 3rem;
+  margin: 0.143rem;
+  padding: 0 0.5rem;
+  font-size: 20px;
+}
+
+::ng-deep .p-button {
+  margin: 0;
+  display: inline-flex;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  align-items: center;
+  vertical-align: bottom;
+  text-align: center;
+  padding: 9px;
+  font-weight: 500px;
+  margin-right: 2px;
+}
+::ng-deep .p-button .p-button-icon-left {
+  margin-right: 0.5rem;
+  display: none;
+}
+.pagination-Container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.pagination-Container button {
+  margin: 0 5px;
+}
+
+.pagination-Container span {
+  margin: 0 5px;
+}
+.pageno{
+  display: flex;
+  align-items: right;
+  justify-content: end;
+}
+.spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
