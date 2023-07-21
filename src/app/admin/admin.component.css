@@ -31,7 +31,7 @@ th {
   background-color: black;
   border: none;
   color: white;
-  padding: 6px 12px;
+ padding: 6px 12px; 
   text-align: center;
   text-decoration: none;
   float: right;
@@ -44,9 +44,9 @@ th {
   background-size: cover;
   background-position: center;
 }
-.navbar {
+/* .navbar {
   height: 20px;
-}
+} */
 ::ng-deep .p-paginator .p-paginator-current {
   background-color: transparent;
   border: 0 none;
@@ -99,4 +99,11 @@ th {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+::ng-deep .p-button .p-button-label {
+  transition-duration: 0.0s;
+}
+.name{
+  font-weight: bold;
+  font-size: 20px;
 }

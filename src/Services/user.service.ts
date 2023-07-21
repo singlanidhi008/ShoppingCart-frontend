@@ -7,7 +7,12 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class UserService {
 
-  constructor(private _http: HttpClient) {}
+  httpHeaders!:HttpHeaders
+  constructor(private _http: HttpClient) {
+    this.httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
+    this.httpHeaders = new HttpHeaders().set('Authorization',`Bearer ${this._token}`)
+  }
+  
   _token = localStorage.getItem('token');
   headers = new HttpHeaders({
     'Content-Type': 'application/json',

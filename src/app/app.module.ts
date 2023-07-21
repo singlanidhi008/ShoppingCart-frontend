@@ -25,7 +25,7 @@ import { CardModule } from 'primeng/card';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 
@@ -52,6 +52,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     CardModule,
     ConfirmDialogModule,
     ProgressSpinnerModule,
+    ImageCropperModule
     
    
     

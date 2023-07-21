@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  FormBuilder,
-  Validators,
-  AbstractControl,
-} from '@angular/forms';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import {FormGroup,FormControl,FormBuilder,Validators,AbstractControl,} from '@angular/forms';
 import { AccountService } from 'src/Services/account.service';
 import { Router } from '@angular/router';
 import { passwordValidator } from 'src/Password.Validator';
@@ -34,16 +29,82 @@ export class UserComponent {
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ],
       ],
+      Image:['',Validators.required],
       Password: ['', [Validators.required, this.customPasswordValidator]],
       ConfirmPassword: ['', [Validators.required]],
     },
     { validator: passwordValidator }
   );
+    userData=new FormData();
+    imageUrl:any;
+    imageEvent:any
+    onImageChange(event: Event) {
+      const file = (event.target as HTMLInputElement)?.files?.[0] ?? null;
+      if (file) {
+       // this.userData.append('Image', file);
+        this.imageEvent=event
+      //   const reader = new FileReader();
+      // reader.onload = () => {
+        // this.imageUrl = reader.result as string;
+      // }
+      // reader.readAsDataURL(file)
+      }
+    }
+    cropImgPreview:any
+    
+  //   cropImg(e: any) {
+  //     console.log(e);
 
-  onSubmit(data: any) {
+  //     this.cropImgPreview = e.objectUrl;
+  //     this.userData.delete('image');
+  //     this.userData.append('image',e.blob)
+  // }
+  uniqueId:any=Math.random()*100;
+  cropImg(e: any) {
+    console.log(e);
+    this.cropImgPreview = e.objectUrl;
+    const reader = new FileReader();
+    reader.onload = (event: ProgressEvent<FileReader>) => {
+      if (event.target?.result) {
+        const dataURL = event.target.result as string;
+        const byteString = atob(dataURL.split(',')[1]);
+        const mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
+        const arrayBuffer = new ArrayBuffer(byteString.length);
+        const uintArray = new Uint8Array(arrayBuffer);
+  
+        for (let i = 0; i < byteString.length; i++) {
+          uintArray[i] = byteString.charCodeAt(i);
+        }
+      const blob = new Blob([arrayBuffer], { type: mimeString });
+         this.userData.delete('image');
+        this.userData.append('image', blob, `${this.uniqueId}filename.jpg`);
+      } 
+    };
+  
+    // Read the Blob as a data URL
+    reader.readAsDataURL(e.blob);
+  }
+  
+  
+  imgLoad() {
+    // display cropper tool
+     }
+
+initCropper() {
+    // init cropper
+          }
+
+imgFailed() {
+    // error msg
+}
+  onSubmit() {
     console.log('hit agyi');
-    4;
-    this._service.userSignUp(data).subscribe(
+      this.userData.append('Username',this.UserObj.value.Username);
+      console.log(this.UserObj.value.Username);
+      this.userData.append('Email',this.UserObj.value.Email);
+      this.userData.append('Password',this.UserObj.value.Password);
+      this.userData.append('ConfirmPassword',this.UserObj.value.ConfirmPassword);
+    this._service.userSignUp(this.userData).subscribe(
       (res) => {
         setTimeout(() => {
           this.messageservice.add({
@@ -74,6 +135,9 @@ export class UserComponent {
   }
   get password() {
     return this.UserObj.controls['Password'];
+  }
+  get image() {
+    return this.UserObj.controls['Image'];
   }
   customPasswordValidator(
     control: AbstractControl

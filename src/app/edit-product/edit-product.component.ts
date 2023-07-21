@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/Services/product.service';
-
 import { MessageService } from 'primeng/api';
 import { timeout } from 'rxjs';
 

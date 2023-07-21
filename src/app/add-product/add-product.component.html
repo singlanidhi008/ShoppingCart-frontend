@@ -31,8 +31,15 @@
         <div class="form-group row">
           <label for="category" class="col-sm-3 col-form-label">Category</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" formControlName="Category"
-              [class.is-invalid]="category.invalid && category.touched" id="category">
+            <select class="form-control" formControlName="Category" id="category">
+              <option value="">Select a category</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Sports">Sports</option>
+              <option value="Footwear">Footwear</option>
+            </select>
+            <!-- <input type="text" class="form-control" formControlName="Category"
+              [class.is-invalid]="category.invalid && category.touched" id="category"> -->
             <small class="text-danger" *ngIf="category.invalid && category.touched">Product category is required</small>
           </div>
         </div>

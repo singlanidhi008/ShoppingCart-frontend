@@ -9,6 +9,7 @@ import {
   MessageService,
   ConfirmEventType,
 } from 'primeng/api';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-admin',
@@ -27,7 +28,9 @@ export class AdminComponent {
   orderBy='name';
   itemsPerPageOptions=[5,10,15]
   loadingData: boolean = true;
-
+  users:any;
+  username:any;
+  image:any;
 
   constructor(
     private _service: ProductService,
@@ -36,13 +39,14 @@ export class AdminComponent {
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {
+     this.username=localStorage.getItem('UserName');
+     console.log("UserName:",this.username);
+     this.image=localStorage.getItem('Image');
+     console.log(this.image);
     this.role = localStorage.getItem('role');
     this.loadProducts();
   }
- 
- 
-  
-
+   
   loadProducts() {
     this.loadingData = true;
     this._service.AllProducts(this.searchString,this.pageSize,this.pageNumber,this.orderBy).subscribe(
@@ -60,6 +64,11 @@ export class AdminComponent {
       }
     );
   }
+
+  
+
+
+  existingImageURL:any;
   result:any;
   totalNumber:any
   totalPages:any

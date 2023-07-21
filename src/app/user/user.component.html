@@ -4,7 +4,7 @@
         <h1>SignUp</h1>
    </div>
    <div id="login-details">
-    <form [formGroup]="UserObj" (ngSubmit)="onSubmit(UserObj.value)" >
+    <form [formGroup]="UserObj" (ngSubmit)="onSubmit()" enctype="multipart/form-data" >
         
         <div class="form-group" id="data">
             <label>UserName</label>
@@ -36,7 +36,31 @@
                 Passwords do not match
               </div>
         </div>
-        <div id="submit">
+        <div class="form-group">
+            <label for="image">Image</label>
+            <div class="imagePreview" *ngIf="imageUrl && imageUrl !== ''"><img [src]="imageUrl" [alt]="">
+            </div>
+              <input type="file" class="form-control" formControlName="Image" (change) = "onImageChange($event)" [class.is-invalid]="image.invalid && image.touched" />
+              <image-cropper
+              [imageChangedEvent]="imageEvent"
+              [maintainAspectRatio]="true"
+              [aspectRatio]="4 / 4"
+              [resizeToWidth]="256"
+              format="png"
+              (imageCropped)="cropImg($event)"
+              (imageLoaded)="imgLoad()"
+              (cropperReady)="initCropper()"
+              (loadImageFailed)="imgFailed()">
+            </image-cropper>
+              <small class="text-danger" *ngIf="image.invalid && image.touched">Image is required</small>
+                     
+          </div> 
+          <!-- <div *ngIf="cropImgPreview">
+            <h3>Real-time Cropped Image Preview:</h3>
+            <img [src]="cropImgPreview" [alt]="">
+          </div> -->
+          
+      <div id="submit">
             <button type="submit" pButton pRipple label="Register" class="p-button p-button-success btn-block"></button>
             <button  type="submit" class="btn btn-primary btn1" (click)="GoToLogin()">BackToLogin</button> 
         </div>

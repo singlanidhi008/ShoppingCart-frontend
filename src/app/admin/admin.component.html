@@ -4,10 +4,13 @@
 </div>
 <div *ngIf="!loadingData">
 <div class="navbar">
-  <button type="button" class="btn3" matTooltip="Click Edit Button" (click)="LogOut()">
+<button type="button" class="btn3" matTooltip="Click Edit Button" (click)="LogOut()">
     LogOut
   </button>
+  <!-- <h1>{{username}}</h1> -->
+  <img [src]="image" class="myImage" alt="Image" height="120px" width="120px"><span class="name">{{username}}</span>
 </div>
+
 <button type="button" class="btn1" *ngIf="role === 'Admin'" matTooltip="Click Edit Button" (click)="AddProduct()">
   Add Product
 </button>
