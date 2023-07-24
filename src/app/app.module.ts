@@ -26,7 +26,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ImageCropperModule } from 'ngx-image-cropper';
-
+import { RouterModule } from '@angular/router';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     EditProductComponent,
     DeleteProductComponent,
     ShowDetailsComponent,
-    AccessDeniedComponent
+    AccessDeniedComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     CardModule,
     ConfirmDialogModule,
     ProgressSpinnerModule,
-    ImageCropperModule
+    ImageCropperModule,
     
    
     

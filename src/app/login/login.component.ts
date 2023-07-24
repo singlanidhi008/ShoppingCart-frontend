@@ -38,6 +38,7 @@ export class LoginComponent {
       localStorage.setItem('role', res.role);
       this._service.storeUserName(res.username);
       this._service.storeImage(res.image);
+      this._service.storeId(res.id);
       this._router.navigate(['Admin']);
     },(err)=>
     {
@@ -47,7 +48,7 @@ export class LoginComponent {
           summary: 'error',
           detail: 'Enter the valid Credentials',
         });
-
+        location.reload(); 
     }
     );
     console.log(this.loginObj.value);

@@ -3,7 +3,7 @@ import { Route, Router } from '@angular/router';
 import { SortEvent } from 'primeng/api';
 import { AccountService } from 'src/Services/account.service';
 import { ProductService } from 'src/Services/product.service';
-
+import { PaginatorModule } from 'primeng/paginator';
 import {
   ConfirmationService,
   MessageService,
@@ -44,15 +44,19 @@ export class AdminComponent {
      this.image=localStorage.getItem('Image');
      console.log(this.image);
     this.role = localStorage.getItem('role');
+    this.userId=localStorage.getItem('Id');
     this.loadProducts();
+
   }
-   
+  userId:any
+  totalRecords:any
   loadProducts() {
     this.loadingData = true;
     this._service.AllProducts(this.searchString,this.pageSize,this.pageNumber,this.orderBy).subscribe(
       (res) => {
         console.log(res);
         this.products = res.items;
+         this.totalRecords=res.Count;
         console.log('Products', this.allproducts);
         this.filteredProducts = [...this.products];
         console.log('filterd Products', this.filteredProducts);
@@ -64,7 +68,11 @@ export class AdminComponent {
       }
     );
   }
+  EditProfile()
+  {
+    this._router.navigate(['EditProfile',this.userId])
 
+  }
   
 
 
@@ -118,6 +126,7 @@ export class AdminComponent {
                 summary: 'Success',
                 detail: 'Product Deleted Successfully',
               });
+              location.reload(); 
             }, 300);
             this.filteredProducts = this.filteredProducts.filter(
               (product) => product.id !== data.id

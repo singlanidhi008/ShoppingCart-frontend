@@ -41,24 +41,10 @@ export class UserComponent {
     onImageChange(event: Event) {
       const file = (event.target as HTMLInputElement)?.files?.[0] ?? null;
       if (file) {
-       // this.userData.append('Image', file);
         this.imageEvent=event
-      //   const reader = new FileReader();
-      // reader.onload = () => {
-        // this.imageUrl = reader.result as string;
-      // }
-      // reader.readAsDataURL(file)
       }
     }
     cropImgPreview:any
-    
-  //   cropImg(e: any) {
-  //     console.log(e);
-
-  //     this.cropImgPreview = e.objectUrl;
-  //     this.userData.delete('image');
-  //     this.userData.append('image',e.blob)
-  // }
   uniqueId:any=Math.random()*100;
   cropImg(e: any) {
     console.log(e);

@@ -7,14 +7,12 @@
 <button type="button" class="btn3" matTooltip="Click Edit Button" (click)="LogOut()">
     LogOut
   </button>
-  <!-- <h1>{{username}}</h1> -->
-  <img [src]="image" class="myImage" alt="Image" height="120px" width="120px"><span class="name">{{username}}</span>
+
+  <img [src]="image" (click)="EditProfile()"  class="myImage" alt="Image" height="120px" width="120px"><span class="name">{{username}}</span>
 </div>
 
-<button type="button" class="btn1" *ngIf="role === 'Admin'" matTooltip="Click Edit Button" (click)="AddProduct()">
-  Add Product
-</button>
 <p-table 
+
 #myTab [value]="filteredProducts" 
 (sortFunction)="customSort($event)"
   [responsive]="true" [globalFilterFields]="['name', 'price', 'description', 'category']"
@@ -23,6 +21,9 @@
   [showCurrentPageReport]="true">
   <ng-template pTemplate="caption">
     <div style="text-align: right">
+      <button type="button" class="btn1" *ngIf="role === 'Admin'" matTooltip="Click Edit Button" (click)="AddProduct()">
+        Add Product
+      </button>
       <i class="pi pi-search" style="margin: 6px 6px 0 0"> </i>
       <input type="text" #input size="50" placeholder="search" (input)="Searching(input.value,pageSize)" style="width:auto; height: 25px;" />
     </div>
@@ -31,12 +32,12 @@
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th><a (click)="SortByName()">Product Name</a></th>
-      <th><a (click)="SortByPrice()">Price</a></th>
-      <th><a (click)="SortByDescription()">Description</a></th>
-      <th><a (click)="SortByCategory()">Category</a></th>
-      <th><a>Image</a></th>
-      <th><a>Actions</a></th>
+      <th (click)="SortByName()">Product Name<span (click)="SortByName()" class="arrow"> &#8597;</span></th>
+      <th (click)="SortByPrice()">Price<span (click)="SortByPrice()" class="arrow"> &#8597;</span></th>
+      <th (click)="SortByDescription()">Description<span (click)="SortByDescription()" class="arrow"> &#8597;</span></th>
+      <th (click)="SortByCategory()">Category<span (click)="SortByCategory()" class="arrow"> &#8597;</span></th>
+      <th (click)="SortByName()">Image<span (click)="SortByName()"  class="arrow"> &#8597;</span></th>
+      <th>Actions<span  class="arrow"> &#8597;</span></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-prd>

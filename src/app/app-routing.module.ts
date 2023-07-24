@@ -10,6 +10,7 @@ import { DeleteProductComponent } from './delete-product/delete-product.componen
 import { ShowDetailsComponent } from './show-details/show-details.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { AsyncSubject } from 'rxjs';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:'EditProduct/:id',component:EditProductComponent,canActivate:[AuthGuard]},
   {path:'DeleteProduct/:id',component:DeleteProductComponent,canActivate:[AuthGuard]},
   {path:'ShowDetails/:id',component:ShowDetailsComponent,canActivate:[AuthGuard]},
+  {path:'EditProfile/:id',component:EditProfileComponent,canActivate:[AuthGuard]},
   {path:'AccessDenied',component:AccessDeniedComponent,canActivate:[AuthGuard]}
 ];
 
@@ -29,4 +31,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponent = [LoginComponent, AdminComponent,UserComponent,AddProductComponent,EditProductComponent,DeleteProductComponent,ShowDetailsComponent,AccessDeniedComponent]
+export const routingComponent = [LoginComponent, AdminComponent,UserComponent,AddProductComponent,EditProductComponent,DeleteProductComponent,ShowDetailsComponent,AccessDeniedComponent,EditProfileComponent]
