@@ -61,7 +61,11 @@ export class ShowDetailsComponent {
     );
   }
 
-  Back() {
-    this._router.navigate(['Admin']);
+  Back() { 
+    window.location.href = '/Admin';
+    // this._router.navigate(['Admin']).then(() => {
+    //   window.location.reload();
+    // });;
+    
   }
 }

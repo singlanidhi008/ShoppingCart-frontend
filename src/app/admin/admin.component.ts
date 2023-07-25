@@ -31,7 +31,7 @@ export class AdminComponent {
   users:any;
   username:any;
   image:any;
-
+ value:any;
   constructor(
     private _service: ProductService,
     private _router: Router,
@@ -39,6 +39,9 @@ export class AdminComponent {
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {
+      this.account.logged.next(true);
+      this.account.changeUsername.next(localStorage.getItem('UserName'));
+      this.account.changeImage.next(localStorage.getItem('Image'));
      this.username=localStorage.getItem('UserName');
      console.log("UserName:",this.username);
      this.image=localStorage.getItem('Image');
@@ -46,6 +49,8 @@ export class AdminComponent {
     this.role = localStorage.getItem('role');
     this.userId=localStorage.getItem('Id');
     this.loadProducts();
+    
+    
 
   }
   userId:any
@@ -68,6 +73,8 @@ export class AdminComponent {
       }
     );
   }
+
+
   EditProfile()
   {
     this._router.navigate(['EditProfile',this.userId])

@@ -1,2 +1,8 @@
+<div class="navbar" style="background-color: wheat;">
+    <h1>Angular Assignment</h1>
+    <h5 *ngIf="log" >{{username}}</h5>
+    <img [src]="image" style="height: 90px; width: 90px; " alt="" *ngIf="log" (click)="EditProfile()">
+    <button type="button" *ngIf="log" class="btn btn-primary" style="height: 40px;" (click)="GoBack()">LogOut</button>
 
+</div>
 <router-outlet></router-outlet>

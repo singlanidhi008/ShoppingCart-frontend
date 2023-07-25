@@ -58,6 +58,7 @@ export class EditProfileComponent {
   UpdateImage: any;
   PreviosImage: any;
   onSubmit() {
+     this._service.changeImage.next(true);
     this._service.UpdateUser(this.id, this.UserData).subscribe(
       (res) => {
         this.existingImage = res.image;

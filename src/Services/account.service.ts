@@ -4,7 +4,7 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, Subject, catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -129,4 +129,10 @@ export class AccountService {
   GetUserRole() {
     return localStorage.getItem('role');
   }
+
+
+
+  logged=new Subject<any>();
+  changeImage=new Subject<any>();
+  changeUsername=new Subject<any>();
 }

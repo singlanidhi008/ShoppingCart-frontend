@@ -38,6 +38,7 @@ export class LoginComponent {
       localStorage.setItem('role', res.role);
       this._service.storeUserName(res.username);
       this._service.storeImage(res.image);
+      this._service.changeImage.next(res.image)
       this._service.storeId(res.id);
       this._router.navigate(['Admin']);
     },(err)=>
