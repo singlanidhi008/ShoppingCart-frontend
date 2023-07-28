@@ -28,6 +28,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { RouterModule } from '@angular/router';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { FileUploadModule } from 'primeng/fileupload';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     ConfirmDialogModule,
     ProgressSpinnerModule,
     ImageCropperModule,
+    FileUploadModule
     
    
     

@@ -1,26 +1,26 @@
 <div class="container-fluid">
-  <p-card header="Advanced Card" subheader="Card Subheader" [style]="{ width: '360px' }">
+  <p-card header="Advanced Card" subheader="Card Subheader">
     <ng-template pTemplate="header">
       <h3>Product Details</h3>
       <img [src]="ShownProduct.get('Image').value" alt="Product Image" class="img" />
     </ng-template>
     <p></p>
     <div class="product-field">
-      <label>Product Name</label>
+      <label>Product Name:-</label>
       <span class="product-value">{{ ShownProduct.get("Name").value }}</span>
     </div>
     <div class="product-field">
-      <label>Product Price</label>
+      <label>Product Price:-</label>
       <span class="product-value">{{ ShownProduct.get("Price").value }}</span>
     </div>
     <div class="product-field">
-      <label> Description</label>
+      <label> Description:-</label>
       <span class="product-value">{{
         ShownProduct.get("Description").value
         }}</span>
     </div>
     <div class="product-field">
-      <label>Category</label>
+      <label>Category:-</label>
       <span class="product-value">{{
         ShownProduct.get("Category").value
         }}</span>

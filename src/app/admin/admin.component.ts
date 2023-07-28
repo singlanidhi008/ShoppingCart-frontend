@@ -4,18 +4,21 @@ import { SortEvent } from 'primeng/api';
 import { AccountService } from 'src/Services/account.service';
 import { ProductService } from 'src/Services/product.service';
 import { PaginatorModule } from 'primeng/paginator';
-import {
-  ConfirmationService,
-  MessageService,
-  ConfirmEventType,
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
+import { ConfirmationService,MessageService, ConfirmEventType,
 } from 'primeng/api';
 import { __values } from 'tslib';
+import * as FileSaver from 'file-saver';
+import { FileUpload, UploadEvent } from 'primeng/fileupload';
+import { Button } from 'primeng/button';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
 })
+
 export class AdminComponent {
   products: any[] = [];
   allproducts: number = 0;
@@ -37,7 +40,8 @@ export class AdminComponent {
     private _router: Router,
     private account: AccountService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private messageservice: MessageService
   ) {
       this.account.logged.next(true);
       this.account.changeUsername.next(localStorage.getItem('UserName'));
@@ -49,9 +53,18 @@ export class AdminComponent {
     this.role = localStorage.getItem('role');
     this.userId=localStorage.getItem('Id');
     this.loadProducts();
-    
-    
+     
 
+  }
+  exportexcel(): void
+  {
+    this._service.ExportToExcel().subscribe( (data: any) => {
+     console.log(data);  
+     FileSaver.saveAs(data, 'products.xlsx');
+    },(err)=>
+    {
+      console.log(err);
+    })
   }
   userId:any
   totalRecords:any
@@ -80,7 +93,33 @@ export class AdminComponent {
     this._router.navigate(['EditProfile',this.userId])
 
   }
-  
+  selectedFile: File | null = null;
+
+  onFileSelected(event: any): void {
+    const files = event?.files;
+    if (files && files.length > 0) {
+      console.log("Files selected:", files);
+      this.selectedFile = files[0];
+      this.uploadFile();
+    }
+  }
+
+  uploadFile(): void {
+    if (this.selectedFile) {
+      this._service.UploadFile(this.selectedFile).subscribe((res)=>{
+        debugger;
+           console.log("file exported successfully",res.message)
+           setTimeout(() => {
+            this.messageservice.add({
+              severity: 'info', summary: 'Success', detail: 'File Uploaded with Auto Mode',
+            });
+          }, 300);
+      },(err)=>
+      {
+        console.log(err);
+      });
+    }
+  }
 
 
   existingImageURL:any;
@@ -133,7 +172,7 @@ export class AdminComponent {
                 summary: 'Success',
                 detail: 'Product Deleted Successfully',
               });
-              location.reload(); 
+             // location.reload(); 
             }, 300);
             this.filteredProducts = this.filteredProducts.filter(
               (product) => product.id !== data.id
@@ -193,6 +232,10 @@ export class AdminComponent {
         console.log(err);
       }
     );
+  }
+  hasNextPage(): boolean {
+    // Check if there are any items in the current products list
+    return this.filteredProducts.length > 0;
   }
   onItemsPerPageChange() {
     this.pageNumber = 1;

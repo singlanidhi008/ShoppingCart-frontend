@@ -81,7 +81,25 @@ export class ProductService {
     console.log(" before delete")
     return this._http.delete<any>(url,this.options);
   }
-  
-   
-  
+  private newoptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${this._token}`
+  }),
+  responseType: 'blob' as 'json'
+};
+
+    ExportToExcel():Observable<any>{
+      
+        const url=`${this.baseUrl}ExportProductsToExcel`
+        return this._http.get<any>(url,this.newoptions);
+    }
+    UploadFile(file:File):Observable<any>{
+      const formData = new FormData();
+      formData.append('file', file);
+      const url=`${this.baseUrl}ImportData`
+       return this._http.post(url,formData,{headers:this.httpHeaders});
+    }
+
+
 }

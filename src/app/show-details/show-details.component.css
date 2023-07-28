@@ -2,6 +2,7 @@
 .container-fluid
 {
   margin-left: 500px;
+  width: 400px;
 }
 .img
 {
@@ -28,11 +29,11 @@
   box-sizing: border-box;
   font-size: 20px;
 }
-.product-value
+/* .product-value
 {
   padding-left: 80px;
   margin-left: 30px;
-}
+} */
 ::ng-deep .p-button.p-button-secondary, .p-buttonset.p-button-secondary > .p-button, .p-splitbutton.p-button-secondary > .p-button {
   color: #ffffff;
   background: #64748B;

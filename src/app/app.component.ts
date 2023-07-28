@@ -37,7 +37,7 @@ export class AppComponent {
   {
     this._service.logged.next(false)
     this.router.navigate([''])
-    localStorage.clear();
+     localStorage.clear();
    
   }
   id=localStorage.getItem('Id')

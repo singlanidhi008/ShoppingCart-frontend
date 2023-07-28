@@ -78,7 +78,6 @@ export class AccountService {
 
     UpdateUser(id:any,data:any):Observable<any>
   {
-    debugger;
     const url='https://localhost:44357/api/Auth/'+id;
     return this._http.put<any>(url, data, {headers:this.httpHeaders})
     .pipe(

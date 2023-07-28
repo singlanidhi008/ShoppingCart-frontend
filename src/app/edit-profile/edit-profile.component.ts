@@ -23,8 +23,9 @@ export class EditProfileComponent {
   imageUrl: any;
   imageEvent: any;
   ngOnInit(): void {
-    this.id = this._arouter.snapshot.paramMap.get('id');
+    this.id = localStorage.getItem('Id')
     this._service.GetUserById(this.id).subscribe((res) => {
+      debugger
       this.existingImage = res.image;
       this.item = res;
       this.editProfile = this.fb.group({
@@ -58,7 +59,7 @@ export class EditProfileComponent {
   UpdateImage: any;
   PreviosImage: any;
   onSubmit() {
-     this._service.changeImage.next(true);
+    this._service.changeImage.next(true);
     this._service.UpdateUser(this.id, this.UserData).subscribe(
       (res) => {
         this.existingImage = res.image;

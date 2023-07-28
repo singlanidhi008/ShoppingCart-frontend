@@ -10,10 +10,16 @@
 
     <img [src]="image"  (click)="EditProfile()"  class="myImage" alt="Image" height="120px" width="120px"><span class="name">{{username}}</span>
   </div> -->
-  
+<div class="importExport">
+  <button class="btn btn-primary" (click)="exportexcel()">Export to Excel</button>
+  <p-fileUpload mode="basic" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept=".csv,.xml,.tsv,.xlsx" [auto]="true" chooseLabel="Import File" (onUpload)="onFileSelected($event)"></p-fileUpload>
+
+  <!-- <input type="file" (change)="onFileSelected($event)" class="custom-file-input" style="margin-left: 900px; ">
+  <button (click)="uploadFile()" class="btn btn-primary">Import</button> -->
+</div>
   <p-table 
   
-  #myTab [value]="filteredProducts" 
+  #myTab [value]="filteredProducts" id="excel-table"
   (sortFunction)="customSort($event)"
     [responsive]="true" [globalFilterFields]="['name', 'price', 'description', 'category']"
               currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -24,6 +30,7 @@
         <button type="button" style="float:left; border-radius: 10px;" class="btn1" *ngIf="role === 'Admin'" matTooltip="Click Edit Button" (click)="AddProduct()">
           Add Product
         </button>
+      
         <span style="margin-left: 850px;">
           <i class="pi pi-search"  style="margin: 6px 6px 0 0;"> </i>
           <input type="text" #input size="50" placeholder="search" (input)="Searching(input.value,pageSize)" style="width:auto; height: 25px;" />
@@ -78,7 +85,7 @@
         <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
       </select>
     </span>
-    <button type="button"  class="btn btn-primary" (click)="next()">>></button>
+    <button type="button"  class="btn btn-primary" [disabled]="!hasNextPage()" (click)="next()">>></button>
   </div>
   </div>
   <p-toast></p-toast>
